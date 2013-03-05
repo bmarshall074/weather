@@ -1,15 +1,21 @@
 <?php 
-// Must be called first to have access to any session data
 session_start();
 
-// "Import" functions - require copies and pastes the content of the file being called here
 require('functions.php')
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
-		<link rel="stylesheet" type="text/css" href="styles.css" />
+		<!-- Bootstrap CSS -->
+			<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+		<!-- Plain CSS -->
+			<link rel="stylesheet" type="text/css" href="styles.css" />
+		<!-- jQuery JS -->
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<!-- Bootstrap JS -->
+			<script src="bootstrap/js/bootstrap.min.js"></script>
+		<!-- Custom Font -->
+			<link href='http://fonts.googleapis.com/css?family=Prosto+One' rel='stylesheet' type='text/css'>
 		<title>Weather</title>
 	</head>
 	<body>
