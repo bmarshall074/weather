@@ -3,7 +3,8 @@
 <a class="brand" href="./">Weather</a>
 <ul class="nav">
 	<li><a href="./?p=weather_map">Map</a></li>
-	<li><a href="./?p=add_location">Add</a></li>
+	<li><a href="./?p=form_add_location">Add</a></li>
+	<li><a href="./?p=list_locations">Saved Locations</a></li>
 	<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Search...</a>
 		<ul class="dropdown-menu">
 			<li>
@@ -14,7 +15,7 @@
 	    				<button type="submit" class="btn">Search</button>
 	 				</div>
 	  				<div class="input-append">
-	  					<input type="text" class="span2 search-query" name="location" placeholder="Seach by Location">
+	  					<input type="text" class="span2 search-query" name="location" placeholder="Seach by City">
 	    				<button type="submit" class="btn">Search</button>
 	  				</div>
 				</form>
