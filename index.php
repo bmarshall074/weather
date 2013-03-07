@@ -14,8 +14,9 @@ require('functions.php')
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<!-- Bootstrap JS -->
 			<script src="bootstrap/js/bootstrap.min.js"></script>
-		<!-- Custom Font -->
+		<!-- Custom Fonts -->
 			<link href='http://fonts.googleapis.com/css?family=Prosto+One' rel='stylesheet' type='text/css'>
+			<link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
 		<title>Weather</title>
 	</head>
 	<body>

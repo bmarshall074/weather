@@ -1,5 +1,6 @@
 <?php 
 extract($_GET);
+$othermessage='';
 if(isset($_GET['zip']) && $_GET['zip']!='' && is_numeric($_GET['zip']) && strlen($_GET['zip'])==5){
 $lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q=$zip&format=csv&num_of_days=5&key=c8bb773a58183637130403", FILE_IGNORE_NEW_LINES);
 $message="Weather for $zip";
@@ -9,14 +10,12 @@ $lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q=$location&fo
 $message="Weather for $location";
 $value=$location;
 } else {
-$_SESSION['message']=array(
-		'text'=>'No valid zip code or location has been entered, showing weather information for 68135',
-		'type'=> 'alert'
-);
+$othermessage='The location you have entered was not found, displaying weather for 68135';
 $message="Weather for 68135";
 $lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q=68135&format=csv&num_of_days=5&key=c8bb773a58183637130403", FILE_IGNORE_NEW_LINES);
 $value='68135';
 }
+if(isset($lines[1])){
 //echo print_r($lines);
 $parts=explode(',',$lines[8]);
 $humidity=$parts[10];
@@ -63,6 +62,7 @@ if($tempf<32) {
 ?>
 
 <div>
+<p><?php echo $othermessage?></p>
 <h2><?php echo $message?></h2>
 <img src="<?php echo $weathericon?>" alt="weather-icon"/><p id="description">Currently <?php echo $cloud?> and <?php echo $temp?> outside</p>
 
@@ -76,33 +76,47 @@ if($tempf<32) {
 		<th>Cloudcover</th>
 	</tr>
 	<tr>
-		<td><?php echo $tempf ?></td>
-		<td><?php echo $tempmaxf ?></td>
-		<td><?php echo $tempminf ?></td>
-		<td><?php echo $humidity ?></td>
-		<td><?php echo $windspeed ?></td>
-		<td><?php echo $cloudcover ?></td>
+		<td><?php echo $tempf ?> &#8457;</td>
+		<td><?php echo $tempmaxf ?> &#8457;</td>
+		<td><?php echo $tempminf ?> &#8457;</td>
+		<td><?php echo $humidity ?> &#37;</td>
+		<td><?php echo $windspeed ?> MPH</td>
+		<td><?php echo $cloudcover ?> &#37;</td>
 	</tr>
 </table>
+<h3>Four Day Forecast</h3>
 <table class="table">
 	<tr>
-		<th>icon</th>
-		<th>Expected High</th>
-		<th>Expected Low</th>
-		<th>Estimated Wind speed</th>
+		<th>Date</th>
+		<th></th>
+		<th>Expected High (&#176;F)</th>
+		<th>Expected Low (&#176;F)</th>
+		<th>Estimated Wind Speed (MPH)</th>
 	</tr>
-	<tr>
-		<td><img class="icon" src="<?php echo $weathericon?>"</td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
+<?php 
+$i=0;
+foreach($lines as $line){
+	if($i>=10){
+		$parts3=explode(',',$line);
+		$date=$parts3[0];
+		$iconforecast=$parts3[10];
+		$tempminforecast=$parts3[4];
+		$tempmaxforecast=$parts3[2];
+		$windspeedforecast=$parts3[5];
+		echo "<tr><td>$date</td><td><img src=\"$iconforecast\" class=\"forecast\" alt=\"weather\"/></td><td>$tempmaxforecast</td><td>$tempminforecast</td><td>$windspeedforecast</td></tr>";
+	}
+	$i++;
+}
+?>
 </table>
-<form action="actions/add_location.php" method="post">
+<form id="save" action="actions/add_location.php" method="post">
 	<input type="hidden" name="location" value="<?php echo $value?>" />
-	<button id="save" type="submit" class="btn btn-primary pull-right">
+	<button type="submit" class="btn btn-primary pull-right">
 	Add this location to my locations
 	</button>
 </form>
 </div>
 <?php
+}else{
+	echo "This Location has not been found. <a href=\"./?p=list_locations\">Click here to return to your saved locations.</a>";
+}

@@ -1,6 +1,7 @@
 <?php 
 session_start();
-if($_POST['location'] != ''){
+$lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q={$_POST['location']}&format=csv&num_of_days=5&key=c8bb773a58183637130403", FILE_IGNORE_NEW_LINES);
+if($_POST['location'] != '' && isset($lines[1])){
 	$f = fopen('../data/locations.csv','a');
 	fwrite($f, "\n{$_POST['location']}");
 	fclose($f);
@@ -8,7 +9,7 @@ if($_POST['location'] != ''){
 }else {
 	$_SESSION['POST']=$_POST;
 	$_SESSION['message']=array(
-			'text'=>'Where\'s the stuff, man?',
+			'text'=>'You have not entered a valid zip code or city name',
 			'type'=> 'alert'
 	);
 	header('Location:../?p=form_add_location');
