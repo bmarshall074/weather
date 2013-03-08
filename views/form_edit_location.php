@@ -1,17 +1,19 @@
 <?php
 $lines = file('data/locations.csv',FILE_IGNORE_NEW_LINES);
-
-// Get the city association with the 'city' parameter in the query string
 $location = $lines[$_GET['location']];
+if(strpos($location, '_')) {
+	$location2 = str_replace('_', ' ', $location);
+}else {
+	$location2=$location;
+}
 ?>
-
-<h2>Edit City</h2>
+<h2>Edit Location</h2>
 <form class="form-horizontal" action="actions/edit_location.php" method="post">
 	<input type="hidden" name="linenum" value="<?php echo $_GET['location'] ?>" />
 	<div class="control-group">
 		<label class="control-label" for="location">Location</label>
 		<div class="controls">
-			<?php echo input('location','Enter a valid zip code or city name', $location) ?>
+			<?php echo input('location','Enter a valid zip code or city name', $location2) ?>
 		</div>
 	</div>
 	<div class="form-actions">

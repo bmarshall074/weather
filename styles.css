@@ -2,12 +2,21 @@ h1, h2, h3, h4 {
 	font-family: 'Prosto One', cursive;
 }
 img {
-	margin: 10px;
+	margin:10px;
 	border:2px solid #6390BF;
+}
+
+div#now {
+	background-color:#BAD7F7;
+}
+
+td.forecast {
+	padding:2px 0px 2px 0px;
 }
 
 img.forecast {
 	height:35px;
+	margin:2px;
 }
 
 footer {
@@ -33,7 +42,9 @@ footer p {
 #description {
 	font-size:14px;
 	font-weight:bold;
-	margin-left:10px;
+	background-color:#BAD7F7;
+	margin:0px 0px 0px 10px;
+	padding:0px 0px 5px 0px;
 }
 
 #display {
@@ -44,6 +55,28 @@ footer p {
 	margin-left:5px;
 }
 
+table#current td {
+	text-align:center;
+}
+
+table#extended th {
+	text-align:center;
+}
+
+table#extended td {
+	text-align:center;
+}
+
 body {
+	background-image:url(pictures/clouds.jpg);
 	font-family: 'Monda', sans-serif;
+}
+
+div#wrapper {
+	background-color:#EDEDED !important;
+}
+
+li#search {
+	height:30px;
+	margin:5px 0px 0px 307px;
 }

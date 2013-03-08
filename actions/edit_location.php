@@ -1,13 +1,17 @@
 <?php
 session_start();
-$lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q={$_POST['location']}&format=csv&num_of_days=5&key=c8bb773a58183637130403", FILE_IGNORE_NEW_LINES);
-if( $_POST['location'] != '' && isset($lines[1])) {
-	
+if(strpos($_POST['location'], ' ')) {
+	$location = str_replace(' ', '_', $_POST['location']);
+}else {
+	$location=$_POST['location'];
+}
+$lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q=$location&format=csv&num_of_days=5&key=c8bb773a58183637130403", FILE_IGNORE_NEW_LINES);
+if( $_POST['location'] != '' && isset($lines[1])) {	
 // Read file into array
 $lines = file('../data/locations.csv', FILE_IGNORE_NEW_LINES);
 
 // Replace line with new values
-$lines[$_POST['linenum']] = "{$_POST['location']}";
+$lines[$_POST['linenum']] = "$location";
 
 // Create the string to write to the file
 $data_string = implode("\n",$lines);

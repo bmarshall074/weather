@@ -1,19 +1,22 @@
 <?php 
 extract($_GET);
 $othermessage='';
-if(isset($_GET['zip']) && $_GET['zip']!='' && is_numeric($_GET['zip']) && strlen($_GET['zip'])==5){
-$lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q=$zip&format=csv&num_of_days=5&key=c8bb773a58183637130403", FILE_IGNORE_NEW_LINES);
-$message="Weather for $zip";
-$value=$zip;
-}elseif(isset($_GET['location']) && $_GET['location']!=''){
-$lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q=$location&format=csv&num_of_days=5&key=c8bb773a58183637130403", FILE_IGNORE_NEW_LINES);
-$message="Weather for $location";
-$value=$location;
+if(isset($_GET['location']) && $_GET['location']!=''){
+	if(strpos($_GET['location'], ' ')) {
+		$location2 = str_replace(' ', '_', $_GET['location']);
+	}else {
+		$location2=$_GET['location'];
+	}
+	$lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q=$location2&format=csv&num_of_days=5&key=c8bb773a58183637130403", FILE_IGNORE_NEW_LINES);
+	if(strpos($_GET['location'], '_')){
+		$location3=str_replace('_', ' ', $_GET['location']);
+	}else {
+		$location3=$location;
+	}
+	$message="Weather for $location3";
+	$value=$location2;
 } else {
-$othermessage='The location you have entered was not found, displaying weather for 68135';
-$message="Weather for 68135";
-$lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q=68135&format=csv&num_of_days=5&key=c8bb773a58183637130403", FILE_IGNORE_NEW_LINES);
-$value='68135';
+	
 }
 if(isset($lines[1])){
 //echo print_r($lines);
@@ -26,7 +29,7 @@ $weathericon=$parts[3];
 
 $parts2=explode(',', $lines[9]);
 //echo "Current temperature in Farenheit:";
-$tempf=$parts[1]*1.8+32;
+$tempf=round($parts[1]*1.8+32,0,PHP_ROUND_HALF_UP);
 //echo "$tempf";
 $tempmaxf=$parts2[2];
 $tempminf=$parts2[4];
@@ -64,9 +67,11 @@ if($tempf<32) {
 <div>
 <p><?php echo $othermessage?></p>
 <h2><?php echo $message?></h2>
+<div id="now">
 <img src="<?php echo $weathericon?>" alt="weather-icon"/><p id="description">Currently <?php echo $cloud?> and <?php echo $temp?> outside</p>
+</div>
 
-<table class="table" id="display">
+<table id="current" class="table" id="display">
 	<tr>
 		<th>Current Temperature</th>
 		<th>High for the day</th>
@@ -85,7 +90,7 @@ if($tempf<32) {
 	</tr>
 </table>
 <h3>Four Day Forecast</h3>
-<table class="table">
+<table id="extended" class="table">
 	<tr>
 		<th>Date</th>
 		<th></th>
@@ -103,7 +108,7 @@ foreach($lines as $line){
 		$tempminforecast=$parts3[4];
 		$tempmaxforecast=$parts3[2];
 		$windspeedforecast=$parts3[5];
-		echo "<tr><td>$date</td><td><img src=\"$iconforecast\" class=\"forecast\" alt=\"weather\"/></td><td>$tempmaxforecast</td><td>$tempminforecast</td><td>$windspeedforecast</td></tr>";
+		echo "<tr><td>$date</td><td class=\"forecast\"><img src=\"$iconforecast\" class=\"forecast\" alt=\"weather\"/></td><td>$tempmaxforecast</td><td>$tempminforecast</td><td>$windspeedforecast</td></tr>";
 	}
 	$i++;
 }
