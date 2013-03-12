@@ -1,9 +1,14 @@
 <?php 
 session_start();
-$lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q={$_POST['location']}&format=csv&num_of_days=5&key=c8bb773a58183637130403", FILE_IGNORE_NEW_LINES);
+if(strpos($_POST['location'], ' ')) {
+	$location2 = str_replace(' ', '_', $_POST['location']);
+}else {
+	$location2=$_POST['location'];
+}
+$lines=file("http://free.worldweatheronline.com/feed/weather.ashx?q=$location2&format=csv&num_of_days=5&key=c8bb773a58183637130403", FILE_IGNORE_NEW_LINES);
 if($_POST['location'] != '' && isset($lines[1])){
 	$f = fopen('../data/locations.csv','a');
-	fwrite($f, "\n{$_POST['location']}");
+	fwrite($f, "\n$location2");
 	fclose($f);
 	header('Location:../?p=list_locations');
 }else {

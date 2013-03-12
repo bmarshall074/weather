@@ -1,5 +1,5 @@
 h1, h2, h3, h4 {
-	font-family: 'Prosto One', cursive;
+	font-family: 'Prosto One', Arial, cursive;
 }
 img {
 	margin:10px;
@@ -68,15 +68,26 @@ table#extended td {
 }
 
 body {
-	background-image:url(pictures/clouds.jpg);
-	font-family: 'Monda', sans-serif;
+	background:url(pictures/clouds.jpg) no-repeat;
+	background-attachment:fixed;
+	font-family: 'Monda', Arial, sans-serif;
 }
 
 div#wrapper {
+	padding:10px 15px 10px 15px;
 	background-color:#EDEDED !important;
+	background-attachment:fixed;
+	border-bottom-left-radius:33px;
+	border-bottom-right-radius:33px;
+	opacity:0.8;
 }
 
 li#search {
 	height:30px;
-	margin:5px 0px 0px 307px;
+	margin:5px 0px 0px 365px;
+}
+
+.navbar-inner {
+	border-top-left-radius:33px;
+	border-top-right-radius:33px;
 }

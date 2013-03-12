@@ -2,9 +2,8 @@
 <div class="navbar-inner">
 <a class="brand" href="./">Weather</a>
 <ul class="nav">
-	<li><a href="./?p=weather_map">Map</a></li>
-	<li><a href="./?p=form_add_location">Add</a></li>
 	<li><a href="./?p=list_locations">Saved Locations</a></li>
+	<li><a href="./?p=form_add_location">Add</a></li>
 	<li id="search">
 		<form class="form-search" action="./?p=display_weather" method="get">
 			<input type="hidden" name="p" value="display_weather" />

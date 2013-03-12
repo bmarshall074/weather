@@ -35,13 +35,13 @@ $tempmaxf=$parts2[2];
 $tempminf=$parts2[4];
 $windspeed=$parts2[5];
 if($cloudcover<25) {
-	$cloud='sunny';
+	$cloud='clear';
 }elseif($cloudcover<60 && $cloudcover>=25){
 	$cloud='partly cloudy';
 }elseif($cloudcover<85 && $cloudcover>=60){
 	$cloud='mostly cloudy';
 }elseif($cloudcover>=85){
-	$cloud='cloudy';
+	$cloud='overcast';
 }else {
 	$cloud='Error';
 }
@@ -51,11 +51,11 @@ if($tempf<32) {
 	$temp='cold';
 }elseif($tempf<65 && $tempf>=50){
 	$temp='chilly';
-}elseif($tempf>=65 && $tempf>=78){
+}elseif($tempf>=65 && $tempf<78){
 	$temp='mild';
-}elseif($tempf>=78 && $tempf>=88){
+}elseif($tempf>=78 && $tempf<88){
 	$temp='warm';
-}elseif($tempf>=88 && $tempf>=100){
+}elseif($tempf>=88 && $tempf<100){
 	$temp='hot';
 }elseif($tempf>=100){
 	$temp='very hot';
