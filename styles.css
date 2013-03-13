@@ -5,40 +5,32 @@ img {
 	margin:10px;
 	border:2px solid #6390BF;
 }
-
 div#now {
 	background-color:#BAD7F7;
 }
-
 td.forecast {
 	padding:2px 0px 2px 0px;
 }
-
 img.forecast {
 	height:35px;
 	margin:2px;
 }
-
 footer {
 	margin-top:25px;
 	font-size:10px;
 	border-top:1px solid lightgrey;
 }
-
 footer p {
 	display:inline;
 }
-
 #credit {
 	display:inline;
 	float:right;
 }
-
 #save {
 	display:block;
 	overflow:auto;
 }
-
 #description {
 	font-size:14px;
 	font-weight:bold;
@@ -46,33 +38,26 @@ footer p {
 	margin:0px 0px 0px 10px;
 	padding:0px 0px 5px 0px;
 }
-
 #display {
 	margin-top:25px;
 }
-
 #trash {
 	margin-left:5px;
 }
-
 table#current td {
 	text-align:center;
 }
-
 table#extended th {
 	text-align:center;
 }
-
 table#extended td {
 	text-align:center;
 }
-
 body {
 	background:url(pictures/clouds.jpg) no-repeat;
 	background-attachment:fixed;
 	font-family: 'Monda', Arial, sans-serif;
 }
-
 div#wrapper {
 	padding:10px 15px 10px 15px;
 	background-color:#EDEDED !important;
@@ -81,12 +66,10 @@ div#wrapper {
 	border-bottom-right-radius:33px;
 	opacity:0.8;
 }
-
 li#search {
 	height:30px;
 	margin:5px 0px 0px 365px;
 }
-
 .navbar-inner {
 	border-top-left-radius:33px;
 	border-top-right-radius:33px;

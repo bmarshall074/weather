@@ -17,6 +17,12 @@ if(isset($_GET['location']) && $_GET['location']!=''){
 	$value=$location2;
 } else {
 	
+}if(is_numeric($_GET['location'])){
+	$contents = file_get_contents("http://api.smartystreets.com/zipcode?auth-id=3e29d78d-5150-4a21-b18c-b337e424df69&auth-token=DpHUb5iBhlwp9Ew073CkibL9Rk8pakW0cG8WOFPUHGVAQxtdsPzTMFvA1InklA5Ruvjgn3NAX6a8X%2BGhENpl%2Bw%3D%3D&street=&street2=&city=&state=&zipcode=$location2&candidates=10");
+	$results = json_decode($contents, TRUE);
+	$city=$results[0]['city_states'][0]['city'];
+	$state=$results[0]['city_states'][0]['state'];
+	$message="Weather for $city, $state ($location2)";
 }
 if(isset($lines[1])){
 //echo print_r($lines);
