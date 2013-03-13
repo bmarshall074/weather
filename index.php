@@ -8,8 +8,15 @@ require('functions.php')
 	<head>
 		<!-- Bootstrap CSS -->
 			<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+
 		<!-- Plain CSS -->
-			<link rel="stylesheet" type="text/css" href="styles.css" />
+				<?php 
+				if(isset($_GET['location']) && $_GET['location']=='chris' || isset($_GET['location']) && $_GET['location']=='Chris'){
+					echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles_chris.css\" />";
+				}else {
+					echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\" />";
+				}
+				?>
 		<!-- jQuery JS -->
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<!-- Bootstrap JS -->
